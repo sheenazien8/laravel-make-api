@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+
 
 class AuthController extends Controller
 {
@@ -14,10 +16,10 @@ class AuthController extends Controller
 			"password" => 'required'
 		]);
 
-		User::create([
+		return User::create([
 			"username" => $request->json('username'),
 			"email" => $request->json('email'),
-			"password" => bcrypt($request->json('password')),
+			"password" => bcrypt($request->json('password')) ,
 		]);
 	}
 }
