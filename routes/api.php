@@ -7,7 +7,9 @@ Route::group(["middleware" => ["api"]], function() {
 
 	Route::group(['middleware' => ['jwt.auth']], function() {
 	    Route::get('/profile', "UserController@show");
-	    Route::post('/tutorial', "TutorialController@create");
+	    Route::get('/tutorial', "TutorialController@index");
+	    Route::get('/tutorial/show/{id}', "TutorialController@show");
+	    Route::post('/tutorial', "TutorialController@store");
 	});
 
 });
