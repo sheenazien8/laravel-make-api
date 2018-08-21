@@ -9,12 +9,13 @@ class TutorialController extends Controller
 {
 	public function index()
 	{
-		return Tutorial::all();
+		return Tutorial::with('comments')->get();
+		/*return Tutorial::all();*/
 	}
 
 	public function show($id)
 	{
-		$tutorial = Tutorial::find($id);
+		$tutorial = Tutorial::with('comments')->where('id', $id)->first();
 		/*Menguji ownership apakah tutorial itu punya si id yang login*/
 		if (!$tutorial) {
 			return response()->json([
